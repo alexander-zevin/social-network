@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import {CheckBoxContainer, FullScreenBox, LoginForm, LoginTitle} from "./LoginStyles";
 import {Button} from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 export const Login = () => {
 
@@ -19,14 +20,14 @@ export const Login = () => {
             <LoginForm>
                 <LoginTitle>Log In</LoginTitle>
                 <TextField
-                    onChange={event => {setEmail(event.target.value)}}
+                    onChange={event => setEmail(event.target.value)}
                     value={email}
                     id='textFieldEmail'
                     label='Email'
                     fullWidth
                 />
                 <TextField
-                    onChange={event => {setPassword(event.target.value)}}
+                    onChange={event => setPassword(event.target.value)}
                     value={password}
                     id='textFieldPassword'
                     label='Password'
@@ -34,14 +35,19 @@ export const Login = () => {
                     fullWidth
                 />
                 <CheckBoxContainer>
-                    <Checkbox
-                        checked={checked}
-                        onChange={event => {setChecked(event.target.checked)}}
-                        color='primary'
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={checked}
+                                onChange={event => setChecked(event.target.checked)}
+                                name='formCheckBox'
+                                color='primary'
+                            />
+                        }
+                        label='remember me'
                     />
-                    <span>remember me</span>
                 </CheckBoxContainer>
-                <Button variant="contained" color="primary" size="large">LOGIN</Button>
+                <Button variant='contained' color='primary' size='large'>LOGIN</Button>
             </LoginForm>
         </FullScreenBox>
     );
