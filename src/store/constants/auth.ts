@@ -1,2 +1,3 @@
-export const SET_USER_DATA = 'SET_USER_DATA';
-export const GET_CAPTCHA_URL_SUCCESS = 'GET_CAPTCHA_URL_SUCCESS';
+export const SET_EMAIL = 'SET_EMAIL'
+export const SET_PASSWORD = 'SET_PASSWORD'
+export const SET_CHECKED = 'SET_CHECKED'

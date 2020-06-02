@@ -1,9 +1,10 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {authReducer} from "./reducers/auth";
 
-/*const rootReducer = combineReducers({
-    form: formReducer
+const rootReducer = combineReducers({
+    auth: authReducer
 });
 
-export type RootStateType = ReturnType<typeof rootReducer> //ReturnType cоздаёт тип, состоящий из возвращаемого типа функции RootReducer
+export type RootStateType = ReturnType<typeof rootReducer>
 
-export const store = createStore(rootReducer, applyMiddleware(...middlewares));*/
+export const store = createStore(rootReducer);
