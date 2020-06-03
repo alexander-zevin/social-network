@@ -1,43 +1,30 @@
-import React, {useEffect} from 'react';
+import React, {useReducer} from 'react';
 import TextField from '@material-ui/core/TextField';
 import {CheckBoxContainer, FullScreenBox, LoginForm, LoginTitle} from "./LoginStyles";
 import {Button} from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import {useDispatch, useSelector} from "react-redux";
-import {
-    setCheckedActionCreator,
-    setEmailActionCreator,
-    setPasswordActionCreator
-} from "../../store/actions/auth";
-import {ISetChecked, ISetEmail, ISetPassword} from "./LoginTypes";
-import {RootStateType} from "../../store/store";
-import {IAuthState} from "../../store/types/auth";
+import {initialState, loginReducer} from "./LoginReducer";
+import {setCheckedActionCreator, setEmailActionCreator, setPasswordActionCreator} from "./LoginActions";
 
 export const Login = () => {
 
-    const {email, password, checked} = useSelector((state: RootStateType): IAuthState => state.auth)
-
-    const dispatch = useDispatch()
-
-    const setEmail: ISetEmail = email => dispatch(setEmailActionCreator(email))
-    const setPassword: ISetPassword = password => dispatch(setPasswordActionCreator(password))
-    const setChecked: ISetChecked = checked => dispatch(setCheckedActionCreator(checked))
+    const [state, dispatch] = useReducer(loginReducer, initialState);
 
     return (
         <FullScreenBox>
             <LoginForm>
                 <LoginTitle>Log In</LoginTitle>
                 <TextField
-                    onChange={event => setEmail(event.target.value)}
-                    value={email}
+                    onChange={event => dispatch(setEmailActionCreator(event.target.value))}
+                    value={state.email}
                     id='textFieldEmail'
                     label='Email'
                     fullWidth
                 />
                 <TextField
-                    onChange={event => setPassword(event.target.value)}
-                    value={password}
+                    onChange={event => dispatch(setPasswordActionCreator(event.target.value))}
+                    value={state.password}
                     id='textFieldPassword'
                     label='Password'
                     type='password'
@@ -47,8 +34,8 @@ export const Login = () => {
                     <FormControlLabel
                         control={
                             <Checkbox
-                                checked={checked}
-                                onChange={event => setChecked(event.target.checked)}
+                                checked={state.checked}
+                                onChange={event => dispatch(setCheckedActionCreator(event.target.checked))}
                                 name='formCheckBox'
                                 color='primary'
                             />

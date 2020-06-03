@@ -1,18 +1,19 @@
 import React, {useEffect} from 'react';
 import './App.css';
 import {Login} from "./components/Login/Login";
-import {Route, Redirect, Switch} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import {Main} from "./components/Main/Main";
 import {useDispatch, useSelector} from "react-redux";
-import {IAuthState, IGetAuthUserData} from "./store/types/auth";
-import {getAuthUserDataThunkCreator} from "./store/actions/auth";
+import {IAuthState, IGetAuthUserData} from "./store/types/authTypes";
+import {getAuthUserDataThunkCreator} from "./store/actions/authActions";
 import {RootStateType} from "./store/store";
 import {PrivateRoute} from "./components/PrivateRoute/PrivateRoute";
+import {IAppState} from "./store/types/appTypes";
 
 export const App = () => {
 
     const {isAuth} = useSelector((state: RootStateType): IAuthState => state.auth)
-    console.log('isAuth: ' + isAuth)
+    const {initialized} = useSelector((state: RootStateType): IAppState => state.app)
 
     const dispatch = useDispatch()
 
@@ -24,14 +25,19 @@ export const App = () => {
 
     return (
         <div className="App">
-            <Switch>
-                <PrivateRoute exact path='/' isAuth={isAuth}>
-                    <Main/>
-                </PrivateRoute>
-                <Route exact path="/login">
-                    <Login/>
-                </Route>
-            </Switch>
+            {
+                initialized ?
+                <Switch>
+                    <PrivateRoute exact path='/' isAuth={isAuth}>
+                        <Main/>
+                    </PrivateRoute>
+                    <Route exact path="/login">
+                        <Login/>
+                    </Route>
+                </Switch>
+                :
+                <span>spin</span>
+            }
         </div>
     );
 }

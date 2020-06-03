@@ -17,7 +17,7 @@ export const FullScreenBox = styled.div`
 
 export const LoginForm = styled.form.attrs( () => ({
     novalidate: true,
-    autocomplete: 'off'
+    autocomplete: 'on'
 }))`
     height: 400px;
     width: 300px;
