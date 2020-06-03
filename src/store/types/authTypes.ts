@@ -17,5 +17,3 @@ export interface ISetUserDataAction {
     login: string
     email: string
 }
-
-export type AuthActionType = ISetUserDataAction
