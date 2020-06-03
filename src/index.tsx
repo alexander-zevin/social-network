@@ -7,12 +7,15 @@ import {ThemeProvider} from '@material-ui/core/styles';
 import theme from "./theme";
 import {Provider as StoreProvider} from 'react-redux'
 import {store} from "./store/store";
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
     <React.StrictMode>
         <StoreProvider store={store}>
             <ThemeProvider theme={theme}>
-                <App/>
+                <BrowserRouter>
+                    <App/>
+                </BrowserRouter>
             </ThemeProvider>
         </StoreProvider>
     </React.StrictMode>,

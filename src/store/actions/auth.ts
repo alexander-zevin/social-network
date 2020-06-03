@@ -16,8 +16,8 @@ export const setUserDataActionCreator = (userId: number, login: string, email: s
 
 export const getAuthUserDataThunkCreator = () => async (dispatch: Dispatch<ISetUserDataAction>) => {
     const response = await authAPI.me()
+    console.log('resultCode: ' + response.data.resultCode)
     if (response.data.resultCode === 0) {
-        alert(response.data.resultCode)
         const {userId, login, email} = response.data.data
         dispatch(setUserDataActionCreator(userId, login, email))
     }

@@ -2,9 +2,9 @@ import {SET_CHECKED, SET_EMAIL, SET_PASSWORD, SET_USER_DATA} from "../constants/
 
 export interface IAuthState {
     userId: number | null
-    login: number | null
-    email: null | string
-    password: null | string
+    login: string
+    email: string
+    password: string
     checked: boolean
     isAuth: boolean
 }

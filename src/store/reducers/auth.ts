@@ -3,9 +3,9 @@ import {SET_CHECKED, SET_EMAIL, SET_PASSWORD, SET_USER_DATA} from "../constants/
 
 export const initialState: IAuthState = {
     userId: null,
-    login: null,
-    email: null,
-    password: null,
+    login: '',
+    email: '',
+    password: '',
     checked: true,
     isAuth: false
 };
