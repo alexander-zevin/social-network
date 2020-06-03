@@ -1,11 +1,12 @@
 import React, {useReducer} from 'react';
 import TextField from '@material-ui/core/TextField';
-import {CheckBoxContainer, FullScreenBox, LoginForm, LoginTitle} from "./LoginStyles";
+import {CheckBoxContainer, LoginForm, LoginTitle} from "./LoginStyles";
 import {Button} from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import {initialState, loginReducer} from "./LoginReducer";
 import {setCheckedActionCreator, setEmailActionCreator, setPasswordActionCreator} from "./LoginActions";
+import {FullScreenBox} from "../common/styles";
 
 export const Login = () => {
 

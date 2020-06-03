@@ -9,13 +9,15 @@ import {getAuthUserDataThunkCreator} from "./store/actions/authActions";
 import {RootStateType} from "./store/store";
 import {PrivateRoute} from "./components/PrivateRoute/PrivateRoute";
 import {IAppState} from "./store/types/appTypes";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import {FullScreenBox} from "./components/common/styles";
 
 export const App = () => {
 
+    const dispatch = useDispatch()
+
     const {isAuth} = useSelector((state: RootStateType): IAuthState => state.auth)
     const {initialized} = useSelector((state: RootStateType): IAppState => state.app)
-
-    const dispatch = useDispatch()
 
     const getAuthUserData: IGetAuthUserData = () => dispatch(getAuthUserDataThunkCreator())
 
@@ -36,7 +38,9 @@ export const App = () => {
                     </Route>
                 </Switch>
                 :
-                <span>spin</span>
+                <FullScreenBox>
+                    <CircularProgress />
+                </FullScreenBox>
             }
         </div>
     );

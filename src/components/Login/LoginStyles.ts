@@ -6,15 +6,6 @@ export const LoginTitle = styled.span`
     font-size: 1.5em;
 `;
 
-export const FullScreenBox = styled.div`
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #bbdefb;
-`;
-
 export const LoginForm = styled.form.attrs( () => ({
     novalidate: true,
     autocomplete: 'on'
