@@ -1,14 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import TextField from '@material-ui/core/TextField';
 import {CheckBoxContainer, FullScreenBox, LoginForm, LoginTitle} from "./LoginStyles";
 import {Button} from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import {useDispatch, useSelector} from "react-redux";
-import {setCheckedActionCreator, setEmailActionCreator, setPasswordActionCreator} from "../../store/actions/auth";
+import {
+    getAuthUserDataThunkCreator,
+    setCheckedActionCreator,
+    setEmailActionCreator,
+    setPasswordActionCreator
+} from "../../store/actions/auth";
 import {ISetChecked, ISetEmail, ISetPassword} from "./LoginTypes";
 import {RootStateType} from "../../store/store";
-import {IAuthState} from "../../store/types/auth";
+import {IAuthState, IGetAuthUserData} from "../../store/types/auth";
 
 export const Login = () => {
 
@@ -19,7 +24,11 @@ export const Login = () => {
     const setEmail: ISetEmail = email => dispatch(setEmailActionCreator(email))
     const setPassword: ISetPassword = password => dispatch(setPasswordActionCreator(password))
     const setChecked: ISetChecked = checked => dispatch(setCheckedActionCreator(checked))
+    const getAuthUserData: IGetAuthUserData = () => dispatch(getAuthUserDataThunkCreator())
 
+    useEffect(() => {
+        getAuthUserData()
+    }, []);
 
     return (
         <FullScreenBox>

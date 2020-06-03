@@ -1,9 +1,23 @@
-import {SET_CHECKED, SET_EMAIL, SET_PASSWORD} from "../constants/auth";
+import {SET_CHECKED, SET_EMAIL, SET_PASSWORD, SET_USER_DATA} from "../constants/auth";
 
 export interface IAuthState {
+    userId: number | null
+    login: number | null
     email: null | string
     password: null | string
     checked: boolean
+    isAuth: boolean
+}
+
+export interface IGetAuthUserData {
+    (): void
+}
+
+export interface ISetUserDataAction {
+    type: typeof SET_USER_DATA
+    userId: number
+    login: string
+    email: string
 }
 
 export interface ISetEmailAction {
@@ -21,4 +35,4 @@ export interface ISetCheckedAction {
     checked: boolean
 }
 
-export type AuthActionType = ISetEmailAction | ISetPasswordAction | ISetCheckedAction
+export type AuthActionType = ISetUserDataAction | ISetEmailAction | ISetPasswordAction | ISetCheckedAction

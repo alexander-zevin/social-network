@@ -1,10 +1,13 @@
 import {AuthActionType, IAuthState} from "../types/auth";
-import {SET_CHECKED, SET_EMAIL, SET_PASSWORD} from "../constants/auth";
+import {SET_CHECKED, SET_EMAIL, SET_PASSWORD, SET_USER_DATA} from "../constants/auth";
 
 export const initialState: IAuthState = {
+    userId: null,
+    login: null,
     email: null,
     password: null,
-    checked: true
+    checked: true,
+    isAuth: false
 };
 
 export const authReducer = (state = initialState, action: AuthActionType): IAuthState => {
@@ -20,6 +23,13 @@ export const authReducer = (state = initialState, action: AuthActionType): IAuth
         case SET_CHECKED:
             return Object.assign({}, state, {
                 checked: action.checked
+            })
+        case SET_USER_DATA:
+            return Object.assign({}, state, {
+                userId: action.userId,
+                email: action.email,
+                login: action.login,
+                isAuth: true
             })
         default:
             return state;
