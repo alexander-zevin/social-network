@@ -11,7 +11,7 @@ import {authAPI} from "../../api/api";
 import {ILogin, ILoginProps} from "./LoginTypes";
 import {useDispatch} from "react-redux";
 import {setAuthActionCreator} from "../../store/actions/authActions";
-import {Redirect, Route} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 export const Login: FC<ILoginProps> = ({isAuth}) => {
 

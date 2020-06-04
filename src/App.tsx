@@ -10,6 +10,7 @@ import {RootStateType} from "./store/store";
 import {PrivateRoute} from "./components/PrivateRoute/PrivateRoute";
 import {IAppState} from "./store/types/appTypes";
 import {Preloader} from "./components/Preloader/Preloader";
+import {NoMatch} from "./components/NoMatch/NoMatch";
 
 export const App = () => {
 
@@ -34,6 +35,9 @@ export const App = () => {
                     </PrivateRoute>
                     <Route exact path="/login">
                         <Login isAuth={isAuth}/>
+                    </Route>
+                    <Route path="*">
+                        <NoMatch />
                     </Route>
                 </Switch>
                 :
