@@ -1,4 +1,4 @@
-import {SET_USER_DATA} from "../constants/authContants";
+import {SET_AUTH, SET_USER_DATA} from "../constants/authContants";
 
 export interface IAuthState {
     userId: number | null
@@ -17,3 +17,10 @@ export interface ISetUserDataAction {
     login: string
     email: string
 }
+
+export interface ISetAuthAction {
+    type: typeof SET_AUTH
+    isAuth: boolean
+}
+
+export type AuthActionType = ISetUserDataAction | ISetAuthAction

@@ -6,6 +6,14 @@ export interface IState {
     checked: boolean
 }
 
+export interface ILoginProps {
+    isAuth: boolean
+}
+
+export interface ILogin {
+    (email: string, password: string, checked: boolean, captcha: boolean): void
+}
+
 export interface ISetEmailAction {
     type: typeof SET_EMAIL
     email: string

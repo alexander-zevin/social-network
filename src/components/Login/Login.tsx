@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, {FC, useEffect, useReducer} from 'react';
 import TextField from '@material-ui/core/TextField';
 import {CheckBoxContainer, LoginForm, LoginTitle} from "./LoginStyles";
 import {Button} from "@material-ui/core";
@@ -7,10 +7,29 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import {initialState, loginReducer} from "./LoginReducer";
 import {setCheckedActionCreator, setEmailActionCreator, setPasswordActionCreator} from "./LoginActions";
 import {FullScreenBox} from "../common/styles";
+import {authAPI} from "../../api/api";
+import {ILogin, ILoginProps} from "./LoginTypes";
+import {useDispatch} from "react-redux";
+import {setAuthActionCreator} from "../../store/actions/authActions";
+import {Redirect, Route} from "react-router-dom";
 
-export const Login = () => {
+export const Login: FC<ILoginProps> = ({isAuth}) => {
+
+    const dispatchRedux = useDispatch()
 
     const [state, dispatch] = useReducer(loginReducer, initialState);
+
+    const login: ILogin = async (email, password, checked, captcha) => {
+        const response = await authAPI.login(email, password, checked, captcha)
+        if (response.data.resultCode === 0) {
+            const userId = response.data.data.userId
+            console.log('login: ' + userId + ', resultCode: ' + response.data.resultCode)
+            dispatchRedux(setAuthActionCreator(true))
+        }
+    }
+    if (isAuth) {
+        return <Redirect to={'/'}/>
+    }
 
     return (
         <FullScreenBox>
@@ -44,7 +63,14 @@ export const Login = () => {
                         label='remember me'
                     />
                 </CheckBoxContainer>
-                <Button variant='contained' color='primary' size='large'>LOGIN</Button>
+                <Button
+                    variant='contained'
+                    color='primary'
+                    size='large'
+                    onClick={() => login(state.email, state.password, state.checked, false)}
+                >
+                    LOGIN
+                </Button>
             </LoginForm>
         </FullScreenBox>
     );

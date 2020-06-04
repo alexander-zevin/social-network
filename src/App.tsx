@@ -9,8 +9,7 @@ import {getAuthUserDataThunkCreator} from "./store/actions/authActions";
 import {RootStateType} from "./store/store";
 import {PrivateRoute} from "./components/PrivateRoute/PrivateRoute";
 import {IAppState} from "./store/types/appTypes";
-import CircularProgress from '@material-ui/core/CircularProgress';
-import {FullScreenBox} from "./components/common/styles";
+import {Preloader} from "./components/Preloader/Preloader";
 
 export const App = () => {
 
@@ -34,13 +33,11 @@ export const App = () => {
                         <Main/>
                     </PrivateRoute>
                     <Route exact path="/login">
-                        <Login/>
+                        <Login isAuth={isAuth}/>
                     </Route>
                 </Switch>
                 :
-                <FullScreenBox>
-                    <CircularProgress />
-                </FullScreenBox>
+                <Preloader/>
             }
         </div>
     );

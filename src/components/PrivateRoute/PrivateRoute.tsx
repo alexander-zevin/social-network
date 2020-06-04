@@ -7,7 +7,7 @@ export const PrivateRoute = ({ children, isAuth, ...rest }: IPrivateRoute) => {
         <Route
             {...rest}
             render={
-                () => isAuth ? children : <Redirect to={{pathname: "/login"}} />
+                () => isAuth ? children : <Redirect to={{pathname: '/login'}} />
             }
         />
     )
